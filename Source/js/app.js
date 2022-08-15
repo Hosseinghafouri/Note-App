@@ -31,13 +31,13 @@ function inputFieldHandler(event) {
     if (event.keyCode === 13 && valueInputField) {
         makeNewNote(valueInputField, inputColor2);
         inputField.value = "";
-        inputField.style.backgroundColor = "";
-    }
+        inputField.style.backgroundColor = "";  
+    };
     if (event.keyCode === 46) {
         inputField.value = "";
         inputField.style.backgroundColor = "";
         notesContainer.innerHTML = "";
-    }
+    };
 };
 function btnAddHandler() {
     let valueInputField = inputField.value.trim();
@@ -46,7 +46,8 @@ function btnAddHandler() {
         makeNewNote(valueInputField, inputColor);
         inputField.value = "";
         inputField.style.backgroundColor = "";
-    }
+    };
+    inputField.focus();
     btnAdd.blur();
 };
 function btnDeletHandler() {
