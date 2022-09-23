@@ -5,36 +5,28 @@ let btnAdd = $.querySelector("#btn-save");
 let btnRemove = $.querySelector("#btn-delete");
 let colorSelectBox = $.querySelector("#color-select");
 
-    colorSelectBox.addEventListener('click', function (colorName){
-        let backgroundName = colorName.target.style.backgroundColor;
-        inputField.style.backgroundColor = backgroundName;
-    });
+colorSelectBox.addEventListener('click', function (colorName) {
+    let backgroundName = colorName.target.style.backgroundColor;
+    inputField.style.backgroundColor = backgroundName;
+});
 
-    notesContainer.addEventListener('click', (event)=>{
-        if (event.target.tagName === "P") {
-            event.target.parentElement.remove();
-        }
-    });
+notesContainer.addEventListener('click', (event) => {
+    if (event.target.tagName === "P") {
+        event.target.parentElement.remove();
+    }
+});
 
-function makeNewNote(valueInputField, inputColor, inputColor2) {
-    let divCard = $.createElement("div");
-    divCard.className = "card shadow-sm rounded border-0 defult-Color";
-    divCard.setAttribute("title", "Click on any note to delete it");
-    divCard.style.backgroundColor = inputColor, inputColor2;
-    let cardText = $.createElement("p");
-    cardText.className = "card-text p-3 font-weight-bolder";
-    cardText.innerHTML = valueInputField;
-    divCard.append(cardText);
-    notesContainer.append(divCard);
+function makeNewNote(valueInputField, inputColor) {
+    notesContainer.insertAdjacentHTML('beforeend', `<div class="card shadow-sm rounded border-0 defult-Color" style="background-color:${inputColor}" title="Click on any note to delete it"><p class="card-text p-3 font-weight-bolder">${valueInputField}</p></div>`);
 };
 
-function inputFieldHandler(event) { 
+function inputFieldHandler(event) {
     let valueInputField = inputField.value.trim();
-    let inputColor2 = inputField.style.backgroundColor;
+    let inputColor = inputField.style.backgroundColor;
     if (event.keyCode === 13 && valueInputField) {
-        makeNewNote(valueInputField, inputColor2);
+        makeNewNote(valueInputField, inputColor);
         inputField.value = "";
-        inputField.style.backgroundColor = "";  
+        inputField.style.backgroundColor = "";
     };
     if (event.keyCode === 46) {
         inputField.value = "";
